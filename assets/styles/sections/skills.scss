@@ -1,46 +1,52 @@
+// Editorial skills: two-column typographic list.
+// Hairline-divided rows: small-caps category label | comma-separated items.
+
 .skills-section {
-  .card {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    height: 100%;
+  .skills-list {
+    margin: 0;
+    padding: 0;
+  }
 
-    .card-head {
-      background-color: get-light-color('bg-primary') !important;
-      height: -moz-fit-content;
-      height: fit-content;
-      padding: 0.7rem;
-      padding-bottom: 0rem;
-      border-bottom: 0.0625rem solid rgba(get-light-color('accent-color'), 0.4);
+  .skills-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    column-gap: 32px;
+    padding: 18px 0;
+    border-top: 1px solid $rule-color;
 
-      .card-img-xs {
-        margin-right: 0.5rem;
-        margin-bottom: 0.75rem;
-      }
+    &:last-child {
+      border-bottom: 1px solid $rule-color;
     }
+  }
 
-    .card-body {
-      padding-top: 0.2rem;
-      padding-left: 0.7rem;
-    }
+  .skills-label {
+    font-family: $font-mono;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: get-light-color('muted-text-color');
+    line-height: 1.7;
+    margin: 0;
+    padding-top: 2px;
+  }
+
+  .skills-items {
+    font-family: $font-body;
+    font-size: 16px;
+    line-height: 1.7;
+    color: get-light-color('text-color');
+    margin: 0;
   }
 
   @include media('<=medium') {
-    padding-left: 0;
-    padding-right: 0;
-
-    .container {
-      max-width: 95%;
+    .skills-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+      padding: 14px 0;
     }
-  }
-}
 
-html[data-theme='dark'] {
-  .skills-section {
-    .card {
-      .card-head {
-        background-color: get-dark-color('bg-card') !important;
-        border-bottom: 0.0625rem solid rgba(get-dark-color('accent-color'), 0.4);
-      }
+    .skills-label {
+      padding-top: 0;
     }
   }
 }

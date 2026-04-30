@@ -1,4 +1,5 @@
 import './navbar'
+import './nav-priority'
 import './sidebar'
 
 import './education'

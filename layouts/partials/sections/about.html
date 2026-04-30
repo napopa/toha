@@ -1,68 +1,44 @@
-{{ $sectionID := replace (lower .section.name) " " "-"  }}
-{{ if .section.id }}
-  {{ $sectionID = .section.id }}
-{{ end }}
+{{/*
+  Editorial About: prose summary, contact rail, and an inline Methods
+  block (two-column small-caps category | comma-separated keywords).
+*/}}
+<div class="about-section">
+  {{ with .summary }}
+    <div class="about-summary">
+      {{ . | markdownify }}
+    </div>
+  {{ end }}
 
-{{ $author:= hugo.Data.author }}
-{{ if (index hugo.Data site.Language.Lang).author }}
-  {{ $author = (index hugo.Data site.Language.Lang).author }}
-{{ end }}
-
-<div class="container anchor p-lg-5 about-section" id="{{ $sectionID }}">
-  <div class="row pt-sm-2 pt-md-4 align-self-center">
-    <!-- summary -->
-    <!-- takes up full section width if no badges/soft skills are specified -->
-    {{ if or (.softSkills) (.badges) }} <div class="col-sm-6"> {{ else }} <div class="col-sm-12"> {{ end }}
-      <h3 class="p-1">{{ $author.name }}</h3>
-      {{ if .designation }}
-      <h5 class="p-1">
-        {{ .designation }}
-        {{ if .company }}
-        {{ i18n "at"}} <a href="{{ .company.url }}" title="{{ .company.name }}" target="_blank" rel="noopener">{{ .company.name }}</a>
-        {{ end }}
-      </h5>
-      {{ end }}
-      <p class="p-1 text-justify">
-        {{ .summary | markdownify }}
-      </p>
-      <div class="text-container ms-auto">
-        <ul class="social-link d-flex">
-          {{ range .socialLinks }}
+  <div class="about-rail">
+    {{ if .resume }}
+      <a class="about-resume" href="{{ .resume | relURL }}" target="_blank" rel="noopener">{{ i18n "resume" }} ↗</a>
+    {{ end }}
+    {{ with .socialLinks }}
+      <ul class="about-links">
+        {{ range . }}
           <li>
             {{ if eq .name "Email" }}
-              <a href="mailto:{{ .url }}" title="{{ .name }}" target="_blank" rel="{{.rel | default "noopener"}}"><i class="{{ .icon }}"></i></a>
-            {{ else if eq .name (i18n "phone") }}
-              <a href="tel:{{ .url }}" title="{{ .name }}" target="_blank" rel="{{.rel | default "noopener"}}"><i class="{{ .icon }}"></i></a>
+              <a href="mailto:{{ .url }}" rel="{{ .rel | default "noopener" }}">{{ .name }}</a>
             {{ else }}
-              <a href="{{ .url }}" title="{{ .name }}" target="_blank" rel="{{.rel | default "noopener"}}"><i class="{{ .icon }}"></i></a>
+              <a href="{{ .url }}" target="_blank" rel="{{ .rel | default "noopener" }}">{{ .name }}</a>
             {{ end }}
           </li>
-          {{ end }}
-        </ul>
-      </div>
-      {{ if .resume }}
-      <a href="{{ .resume | relURL }}" title="{{ i18n "resume"}}" target="#"
-        ><button class="btn btn-dark">{{ i18n "resume"}}</button></a
-      >
-      {{ end }}
-      {{ range .resourceLinks }}
-      <a href="{{ .url | relURL }}" title="{{ .title }}" target="#"
-        ><button class="btn btn-dark">{{ .title }}</button></a
-      >
-      {{ end }}
-    </div>
-    <!-- soft skills circular-progressbar -->
-    <div class="col-sm-6 pt-5 ps-md-4 ps-sm-3 pt-sm-0">
-      <div class="row">
-        {{ range .badges }}
-          {{ partial "misc/badge.html" . }}
         {{ end }}
-        <!-- TODO: Remove this part in version v4+ -->
-        <!-- Keep backward compatibility with old configuration -->
-        {{ range .softSkills }}
-          {{ partial "misc/soft-skills.html" . }}
-        {{ end }}
-      </div>
-    </div>
+      </ul>
+    {{ end }}
   </div>
+
+  {{ with .methods }}
+    <div class="about-methods">
+      <h3 class="about-methods-heading">Methods</h3>
+      <dl class="skills-list">
+        {{ range . }}
+          <div class="skills-row">
+            <dt class="skills-label">{{ .label }}</dt>
+            <dd class="skills-items">{{ delimit .items ", " }}</dd>
+          </div>
+        {{ end }}
+      </dl>
+    </div>
+  {{ end }}
 </div>

@@ -1,0 +1,74 @@
+// Editorial section shell.
+// Single cream paper background, hairline-ruled section headers
+// with Roman numerals, generous vertical rhythm, single column.
+
+.editorial-main {
+  background: get-light-color('bg-primary');
+}
+
+.section-block {
+  padding: 96px 0;
+  border-top: 1px solid $rule-color;
+
+  &:first-of-type {
+    border-top: 0;
+  }
+
+  .section-inner {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .section-header {
+    margin: 0 0 48px 0;
+  }
+
+  .section-heading {
+    font-family: $font-display;
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 36px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0;
+    color: get-light-color('heading-color');
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .section-numeral {
+    font-family: $font-display;
+    font-style: italic;
+    font-weight: 600;
+    color: get-light-color('accent-color');
+    font-size: 0.78em;
+    letter-spacing: 0;
+  }
+
+  .section-title {
+    flex: 1;
+  }
+
+  .section-body {
+    font-family: $font-body;
+    font-size: 17px;
+    line-height: 1.6;
+    color: get-light-color('text-color');
+  }
+
+  @include media('<=medium') {
+    padding: 64px 0;
+
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-heading {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 12px;
+    }
+  }
+}

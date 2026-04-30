@@ -1,22 +1,26 @@
-{{ $sectionID := replace (lower .section.name) " " "-"  }}
-{{ if .section.id }}
-  {{ $sectionID = .section.id }}
-{{ end }}
-
-<div class="container-fluid anchor pb-5 accomplishments-section">
-  {{ if not (.section.hideTitle) }}
-    <h1 class="text-center">
-        <span id="{{ $sectionID }}"></span>{{ .section.name }}</h1>
-  {{ else }}
-    <h1 class="text-center" style="display: none">
-        <span id="{{ $sectionID }}"></span>{{ .section.name }}</h1>
-  {{ end }}
-  
-  <div class="container">
-    <div class="row" id="accomplishment-card-holder">
-      {{ range .accomplishments }}
-        {{ partial "cards/accomplishments" . }}
-      {{ end }}
-    </div>
-  </div>
+{{/*
+  Editorial accomplishments (used here for patents):
+  Timeline column (mono) | title bold + course-overview muted + Google Patents link.
+*/}}
+<div class="accomplishments-section">
+  <ol class="accomplishments-list">
+    {{ range .accomplishments }}
+      <li class="accomplishment-row">
+        <div class="accomplishment-when">{{ .timeline }}</div>
+        <div class="accomplishment-what">
+          <h3 class="accomplishment-title">
+            {{ if .certificateURL }}<a href="{{ .certificateURL }}" target="_blank" rel="noopener">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
+          </h3>
+          {{ with .courseOverview }}
+            <p class="accomplishment-overview">{{ . | markdownify }}</p>
+          {{ end }}
+          {{ with .organization }}
+            <p class="accomplishment-org">
+              {{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
+            </p>
+          {{ end }}
+        </div>
+      </li>
+    {{ end }}
+  </ol>
 </div>

@@ -1,30 +1,35 @@
-{{ $sectionID := replace (lower .section.name) " " "-"  }}
-{{ if .section.id }}
-  {{ $sectionID = .section.id }}
-{{ end }}
-
-<div class="container-fluid anchor pb-5 publications-section" id="{{ $sectionID }}">
-  {{ if not (.section.hideTitle) }}
-    <h1 class="text-center">
-        <span id="{{ $sectionID }}"></span>{{ .section.name }}</h1>
-  {{ else }}
-    <h1 class="text-center" style="display: none">
-        <span id="{{ $sectionID }}"></span>{{ .section.name }}</h1>
-  {{ end }}
-  <div class="container ms-auto text-center">
-    <div class="btn-group flex-wrap" role="pub-group" id="publication-filter-buttons">
-      {{ range .buttons }}
-      <button type="button" class="btn btn-dark pub-filtr-control" data-filter="pub-{{ .filter }}">
-        {{ .name }}
-      </button>
-      {{ end }}
-    </div>
-  </div>
-  <div class="container filtr-publications">
-    <div class="row" id="publication-card-holder">
-      {{ range .publications }}
-        {{ partial "cards/publication" . }}
-      {{ end }}
-    </div>
-  </div>
+{{/*
+  Editorial publications: typographic numbered citation list.
+  Year column (mono) | title bold (link to DOI when available),
+  authors with "Giordano, M." rendered bold, venue italic.
+  No tags, no card.
+*/}}
+<div class="publications-section">
+  <ol class="publications-list">
+    {{ range .publications }}
+      {{ $url := "" }}
+      {{ with .paper.url }}{{ $url = . }}{{ end }}
+      {{ if and (not $url) .publishedIn.url }}{{ $url = .publishedIn.url }}{{ end }}
+      <li class="publication-row">
+        <div class="publication-when">{{ .publishedIn.date }}</div>
+        <div class="publication-what">
+          <h3 class="publication-title">
+            {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}
+          </h3>
+          {{ with .authors }}
+            <p class="publication-authors">
+              {{ $authors := . }}
+              {{ $last := sub (len $authors) 1 }}
+              {{ range $i, $a := $authors }}
+                {{ if eq $a.name "Giordano, M." }}<strong>{{ $a.name }}</strong>{{ else }}{{ $a.name }}{{ end }}{{ if lt $i $last }}, {{ end }}
+              {{ end }}
+            </p>
+          {{ end }}
+          {{ with .publishedIn.name }}
+            <p class="publication-venue"><em>{{ . }}</em></p>
+          {{ end }}
+        </div>
+      </li>
+    {{ end }}
+  </ol>
 </div>

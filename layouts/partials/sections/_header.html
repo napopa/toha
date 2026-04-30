@@ -1,0 +1,16 @@
+{{/*
+  Editorial section header: Roman numeral (from .section.weight) + name,
+  hairline rule beneath. Hidden when .section.hideTitle is set.
+  Receives the section data file as the dot.
+*/}}
+{{ if not .section.hideTitle }}
+  {{ $weight := .section.weight | default 1 }}
+  {{ $numerals := slice "" "I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" "X" }}
+  {{ $numeral := index $numerals $weight }}
+  <header class="section-header">
+    <h2 class="section-heading">
+      <span class="section-numeral">{{ $numeral }}.</span>
+      <span class="section-title">{{ .section.name }}</span>
+    </h2>
+  </header>
+{{ end }}

@@ -3,7 +3,8 @@
 {{ $blogTitle  := site.Params.features.blog.title | default (i18n "posts") }}
 {{ $notesEnabled  := site.Params.features.notes.enable  | default false }}
 {{ $notesTitle := site.Params.features.notes.title  | default (i18n "notes") }}
-{{ $maxVisibleSections   := site.Params.topNavbar.maxVisibleSections   | default 5 }}
+{{/* The priority+ JS handles overflow dynamically; render every section inline. */}}
+{{ $maxVisibleSections   := site.Params.topNavbar.maxVisibleSections   | default 999 }}
 
 {{/*  keep backward compatibility for blog post  */}}
 {{ if site.Params.enableBlogPost }}
@@ -71,7 +72,7 @@
   {{ $navBarTitle = site.Title }}
 {{ end }}
 
-<nav class="navbar navbar-expand-xl top-navbar shadow {{ if .IsHome}}transparent-navbar homepage{{end}}" id="top-navbar">
+<nav class="navbar navbar-expand-md top-navbar shadow {{ if .IsHome}}transparent-navbar homepage{{end}}" id="top-navbar">
   <div class="container">
     {{ if not .IsHome }}
     <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button">
@@ -96,7 +97,7 @@
     </button>
 
     <div class="collapse navbar-collapse dynamic-navbar" id="top-nav-items">
-      <ul class="nav navbar-nav ms-auto">
+      <ul class="nav navbar-nav ms-auto" id="primary-nav">
         <li class="nav-item">
           <a class="nav-link" href="{{ if .IsHome }}#home{{else}}{{ site.BaseURL | relLangURL }}#home{{end}}">{{ i18n "home" }}</a>
         </li>
@@ -107,28 +108,17 @@
               {{ $sectionCount  = add $sectionCount 1}}
               {{ if le $sectionCount $maxVisibleSections }}
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ partial "helpers/get-section-url.html" . }}">{{ .section.name }}</a>
+                  <a class="nav-link" href="{{ partial "helpers/get-section-url.html" . }}">{{ .section.navbarName | default .section.name }}</a>
                 </li>
               {{ end }}
             {{ end }}
           {{- end }}
-          {{ if gt $sectionCount $maxVisibleSections }}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{i18n "more" }}</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {{ $sectionCount := 1 }}
-                {{ range sort $sections "section.weight" }}
-                  {{ if and (.section.enable) (.section.showOnNavbar) }}
-                    {{ $sectionCount  = add $sectionCount 1}}
-                    {{ if gt $sectionCount $maxVisibleSections }}
-                      <a class="dropdown-item" href="{{ partial "helpers/get-section-url.html" . }}">{{ .section.name }}</a>
-                    {{ end }}
-                  {{ end }}
-                {{- end }}
-              </div>
-            </li>
-          {{ end }}
         {{- end }}
+        {{/* Priority+ overflow target. The JS shows/hides this and moves items in/out as space changes. */}}
+        <li class="nav-item dropdown nav-overflow" id="nav-overflow" hidden>
+          <a class="nav-link dropdown-toggle" href="#" id="navOverflowToggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ i18n "more" }}</a>
+          <div class="dropdown-menu" aria-labelledby="navOverflowToggle" id="nav-overflow-menu"></div>
+        </li>
         {{ $shouldAddSeparator:= partial "helpers/add-navbar-separator.html" . }}
         {{ if $shouldAddSeparator }}
           <div id="top-navbar-divider"></div>

@@ -3,8 +3,7 @@
 .home {
   background: get-light-color('bg-primary');
   color: get-light-color('text-color');
-  min-height: 100vh;
-  padding: 0;
+  padding: 96px 0 64px 0;
   margin: 0;
   display: flex;
   align-items: center;
@@ -87,21 +86,21 @@
     height: 140px;
     border-radius: 8px;
     object-fit: cover;
+    object-position: 56% center;
     background: get-light-color('bg-secondary');
     box-shadow: none;
   }
 
   @include media('<=medium') {
     align-items: flex-start;
-    padding-top: 96px;
-    padding-bottom: 64px;
+    padding: 64px 0 32px 0;
 
     .home-inner {
       grid-template-columns: 1fr;
       grid-template-areas:
         'portrait'
         'text';
-      gap: 32px;
+      gap: 24px;
     }
 
     .home-portrait {

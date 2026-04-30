@@ -1,78 +1,99 @@
+// Editorial accomplishments (patents): typographic citation list.
+// Timeline column (mono) | title bold + summary + organization.
+
 .accomplishments-section {
-  @include section-title-adjustment();
-
-  .card {
-    background: get-light-color('bg-card');
-    border-top: 2px solid get-light-color('accent-color');
-    height: 100%;
-
-    &:hover,
-    &:focus {
-      border-top: 2px solid get-light-color('hover-over-accent-color');
-    }
-
-    .card-header {
-      background: none;
-      border: none;
-
-      .sub-title {
-        color: get-light-color('muted-text-color');
-        margin-top: 0.4rem;
-      }
-    }
-
-    .card-body {
-      padding: 0;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    .card-footer {
-      background: get-light-color('bg-card');
-      border: none;
-      padding: 0;
-      padding-left: 0.7rem;
-      padding-bottom: 0.3rem;
-    }
-  }
-
-  @include media('<=large') {
-    width: 100%;
+  .accomplishments-list {
+    list-style: none;
+    margin: 0;
     padding: 0;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
-    margin-top: 2rem;
+  }
 
-    .container {
-      max-width: 100%;
+  .accomplishment-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    column-gap: 32px;
+    padding: 22px 0;
+    border-top: 1px solid $rule-color;
+
+    &:last-child {
+      border-bottom: 1px solid $rule-color;
     }
   }
 
-  @include media('<=small') {
-    flex: 100%;
-    max-width: 100%;
+  .accomplishment-when {
+    font-family: $font-mono;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: get-light-color('accent-color');
+    line-height: 1.6;
+    padding-top: 4px;
   }
-}
 
-html[data-theme='dark'] {
-  .accomplishments-section {
-    .card {
-      background: get-dark-color('bg-card');
-      border-top: 2px solid get-dark-color('accent-color');
+  .accomplishment-title {
+    font-family: $font-display;
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: get-light-color('heading-color');
+    margin: 0 0 6px 0;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid $rule-color;
 
       &:hover,
       &:focus {
-        border-top: 2px solid get-dark-color('hover-over-accent-color');
+        color: get-light-color('accent-color');
+        border-bottom-color: get-light-color('accent-color');
       }
+    }
+  }
 
-      .card-header {
-        .sub-title {
-          color: get-dark-color('muted-text-color');
-        }
+  .accomplishment-overview {
+    font-family: $font-body;
+    font-size: 14px;
+    line-height: 1.55;
+    color: get-light-color('text-color');
+    margin: 0 0 4px 0;
+
+    p {
+      display: inline;
+      margin: 0;
+    }
+  }
+
+  .accomplishment-org {
+    font-family: $font-body;
+    font-size: 13px;
+    line-height: 1.5;
+    color: get-light-color('muted-text-color');
+    margin: 0;
+
+    a {
+      color: get-light-color('muted-text-color');
+      text-decoration: none;
+      border-bottom: 1px solid $rule-color;
+
+      &:hover,
+      &:focus {
+        color: get-light-color('accent-color');
+        border-bottom-color: get-light-color('accent-color');
       }
-      .card-footer {
-        background: get-dark-color('bg-card');
-      }
+    }
+  }
+
+  @include media('<=medium') {
+    .accomplishment-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 18px 0;
+    }
+
+    .accomplishment-when {
+      padding-top: 0;
     }
   }
 }

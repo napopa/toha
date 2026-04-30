@@ -23,8 +23,8 @@ $box-shadow: none;
 
 $themes: (
   'light': (
-    'accent-color': #1a2b6b,
-    'hover-over-accent-color': #0f1a4a,
+    'accent-color': #8c2a2a,
+    'hover-over-accent-color': #6b1f1f,
     'text-over-accent-color': #f4efe6,
     'bg-primary': #f4efe6,
     'bg-primary-inverse': #1a1a1a,
@@ -34,13 +34,13 @@ $themes: (
     'text-color': #1a1a1a,
     'inverse-text-color': #f4efe6,
     'muted-text-color': #6b6b6b,
-    'inline-code-color': #1a2b6b,
+    'inline-code-color': #8c2a2a,
     'highlight-color': #ece6d8,
     'footer-color': #f4efe6,
   ),
   'dark': (
-    'accent-color': #1a2b6b,
-    'hover-over-accent-color': #0f1a4a,
+    'accent-color': #8c2a2a,
+    'hover-over-accent-color': #6b1f1f,
     'text-over-accent-color': #f4efe6,
     'bg-primary': #f4efe6,
     'bg-primary-inverse': #1a1a1a,
@@ -50,7 +50,7 @@ $themes: (
     'text-color': #1a1a1a,
     'inverse-text-color': #f4efe6,
     'muted-text-color': #6b6b6b,
-    'inline-code-color': #1a2b6b,
+    'inline-code-color': #8c2a2a,
     'highlight-color': #ece6d8,
     'footer-color': #f4efe6,
   ),
@@ -78,18 +78,18 @@ $brand-colors: (
 $alerts: (
   'success': (
     'bg-color': #ece6d8,
-    'text-color': #1a2b6b,
+    'text-color': #8c2a2a,
   ),
   'info': (
     'bg-color': #ece6d8,
-    'text-color': #1a2b6b,
+    'text-color': #8c2a2a,
   ),
   'warning': (
     'bg-color': #ece6d8,
-    'text-color': #1a2b6b,
+    'text-color': #8c2a2a,
   ),
   'danger': (
     'bg-color': #ece6d8,
-    'text-color': #1a2b6b,
+    'text-color': #8c2a2a,
   ),
 );
