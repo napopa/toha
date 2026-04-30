@@ -4,15 +4,45 @@
 
 @import 'include-media/dist/_include-media';
 
-// The Mulish font, we use font-weight 300 - 700
-@import '@fontsource/mulish/300';
-@import '@fontsource/mulish/index'; // 400
-@import '@fontsource/mulish/500';
-@import '@fontsource/mulish/600';
-@import '@fontsource/mulish/700';
+// Editorial typography: Fraunces (serif display), Geist (sans body),
+// JetBrains Mono (citation metadata). Loaded from Google Fonts to keep
+// the site repo light; can be swapped to @fontsource for offline builds.
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400&display=swap');
 
 @import './variables';
 @import './mixins';
+
+// Global editorial defaults: cream paper bg, deep ink, body type.
+html,
+body {
+  background-color: get-light-color('bg-primary');
+  color: get-light-color('text-color');
+  font-family: $font-body;
+  font-size: 17px;
+  line-height: 1.6;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-display;
+  color: get-light-color('heading-color');
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: $font-mono;
+}
 
 // components
 @import './components/cards';

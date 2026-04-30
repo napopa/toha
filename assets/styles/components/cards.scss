@@ -1,53 +1,57 @@
+// Cards become invisible containers in the editorial theme.
+// Hairline rules and typography do the visual work; cards just hold layout.
 .card {
-  box-shadow: none;
-  @include transition();
-  overflow: hidden;
-  background: get-light-color('bg-card');
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  overflow: visible;
 
   &:hover,
   &:focus {
-    box-shadow: $box-shadow;
-    border: 1px solid get-light-color('bg-primary');
-    @include transition();
-    .card-img-top {
-      transform: scale(1.2);
-      object-fit: cover;
-      @include transition();
-    }
+    box-shadow: none !important;
+    border: none !important;
   }
 
   .card-head {
-    height: 172px;
-    display: flex;
-    overflow: hidden;
+    height: auto;
+    display: block;
+    overflow: visible;
   }
 
   .card-title {
-    font-size: large;
+    font-family: $font-display;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 4px;
   }
 
   .card-body {
     text-align: left;
+    padding: 0;
   }
 
   .card-img-top {
-    -o-object-fit: cover;
-       object-fit: cover;
-    @include transition();
+    object-fit: cover;
+    border-radius: 4px;
   }
 
   .card-img-sm {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 
   .card-img-xs {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   .card-footer {
-    background: get-light-color('bg-card') !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+
     a.btn {
       text-decoration: none !important;
     }
@@ -55,8 +59,8 @@
 }
 
 .post-card {
-  width: 24rem;
-  display: inline-flex;
+  width: 100%;
+  display: block;
 
   .post-card-link {
     text-decoration: none !important;
@@ -64,65 +68,26 @@
   }
 
   .card {
-    margin: 5px;
+    margin: 0;
     position: relative;
 
-    &:hover,
-    &:focus {
-      .card-img-top {
-        transform: scale(1.2);
-        -o-object-fit: cover;
-           object-fit: cover;
-        @include transition();
-      }
-    }
-
     .card-body {
-      padding: 1.25rem !important;
-      padding-bottom: 0 !important;
+      padding: 0 !important;
 
       .post-summary {
         overflow: hidden;
         text-overflow: ellipsis;
-        display: -webkit-box;
-        max-height: 144px;
-        /* fallback */
-        -webkit-line-clamp: 5;
-        /* number of lines to show */
-        -webkit-box-orient: vertical;
+        max-height: none;
       }
     }
-    .card-footer {
-      margin-top: auto;
 
+    .card-footer {
       span {
-        font-size: 10pt;
+        font-family: $font-mono;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
         color: get-light-color('muted-text-color') !important;
-        padding-top: 5px;
-      }
-    }
-  }
-}
-
-html[data-theme='dark'] {
-  .card {
-    background: get-dark-color('bg-card');
-
-    &:hover,
-    &:focus {
-      border: 1px solid rgba(get-dark-color('accent-color'), 0.2);
-    }
-    .card-footer {
-      background: get-dark-color('bg-card') !important;
-    }
-  }
-
-  .post-card {
-    .card {
-      .card-footer {
-        span {
-          color: get-dark-color('muted-text-color') !important;
-        }
       }
     }
   }
