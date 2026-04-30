@@ -16,7 +16,7 @@
 {{ end }}
 {{ $authorImage := resources.Get $authorImagePath }}
 {{ if and $authorImage (and (ne $authorImage.MediaType.SubType "svg") (ne $authorImage.MediaType.SubType "gif")) }}
-  {{ $authorImage = $authorImage.Fill "280x280" }}
+  {{ $authorImage = $authorImage.Fill "280x280 Center" }}
 {{ end }}
 
 <section class="home" id="home">

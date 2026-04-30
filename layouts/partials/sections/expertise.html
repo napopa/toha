@@ -1,0 +1,20 @@
+{{/*
+  Expertise: a discursive Domains paragraph followed by a hairline-divided
+  Methods table (small-caps category | comma-separated keywords).
+*/}}
+<div class="expertise-section">
+  {{ with .domains }}
+    <div class="expertise-domains">{{ . | markdownify }}</div>
+  {{ end }}
+
+  {{ with .methods }}
+    <dl class="expertise-methods">
+      {{ range . }}
+        <div class="expertise-row">
+          <dt class="expertise-label">{{ .label }}</dt>
+          <dd class="expertise-items">{{ delimit .items ", " }}</dd>
+        </div>
+      {{ end }}
+    </dl>
+  {{ end }}
+</div>

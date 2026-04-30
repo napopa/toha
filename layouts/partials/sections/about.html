@@ -28,17 +28,4 @@
     {{ end }}
   </div>
 
-  {{ with .methods }}
-    <div class="about-methods">
-      <h3 class="about-methods-heading">Methods</h3>
-      <dl class="skills-list">
-        {{ range . }}
-          <div class="skills-row">
-            <dt class="skills-label">{{ .label }}</dt>
-            <dd class="skills-items">{{ delimit .items ", " }}</dd>
-          </div>
-        {{ end }}
-      </dl>
-    </div>
-  {{ end }}
 </div>
