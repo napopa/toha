@@ -85,6 +85,28 @@
       {{ end }}
       {{- $navBarTitle -}}
     </a>
+    {{/* Always-visible icon strip. Sits between brand and toggler in the DOM;
+         flex order on >=md moves it after the nav so it lives at the far right. */}}
+    {{ $author := hugo.Data.author }}
+    {{ if (index hugo.Data site.Language.Lang).author }}
+      {{ $author = (index hugo.Data site.Language.Lang).author }}
+    {{ end }}
+    {{ with $author.contactInfo }}
+      <ul class="navbar-contact" id="navbar-contact">
+        {{ with .email }}
+          <li><a href="mailto:{{ . }}" aria-label="Email"><i data-feather="mail"></i></a></li>
+        {{ end }}
+        {{ with .linkedin }}
+          <li><a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="me noopener" aria-label="LinkedIn"><i data-feather="linkedin"></i></a></li>
+        {{ end }}
+        {{ with .scholar }}
+          <li><a href="{{ . }}" target="_blank" rel="me noopener" aria-label="Google Scholar"><i data-feather="book-open"></i></a></li>
+        {{ end }}
+        {{ with .cv }}
+          <li><a href="{{ . | relURL }}" aria-label="CV"><i data-feather="file-text"></i></a></li>
+        {{ end }}
+      </ul>
+    {{ end }}
     <button
       class="navbar-toggler {{if .IsHome}}navbar-dark{{else}}navbar-light{{end}}"
       id="navbar-toggler"
@@ -98,9 +120,7 @@
 
     <div class="collapse navbar-collapse dynamic-navbar" id="top-nav-items">
       <ul class="nav navbar-nav ms-auto" id="primary-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ if .IsHome }}#home{{else}}{{ site.BaseURL | relLangURL }}#home{{end}}">{{ i18n "home" }}</a>
-        </li>
+        {{/* Home link omitted: the navbar brand wordmark already links to home. */}}
         {{ if $sections }}
           {{ $sectionCount := 1 }}
           {{ range sort $sections "section.weight" }}

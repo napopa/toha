@@ -1,13 +1,14 @@
 {{/*
   Editorial experiences: hairline-divided rows.
-  Year column (mono, start–end) on the left, then designation bold,
-  company italic with link, location muted, responsibilities as small list.
-  No logos, no cards, no shadows.
+  Year column (mono, start–end) on the left, then a small monochrome
+  company mark, then designation bold, company italic with link,
+  location muted, responsibilities as a small list.
 */}}
 <div class="experiences-section">
   <ol class="experiences-list">
     {{ range .experiences }}
       {{ $company := .company }}
+      {{ $logoImage := resources.Get $company.logo }}
       {{ range .positions }}
         <li class="experience-row">
           <div class="experience-when">
@@ -15,10 +16,19 @@
             <span class="experience-end">{{ if .end }}{{ .end }}{{ else }}{{ i18n "present" | default "Present" }}{{ end }}</span>
           </div>
           <div class="experience-what">
-            <h3 class="experience-role">{{ .designation }}</h3>
-            <p class="experience-org">
-              {{ with $company.url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}<em>{{ $company.name }}</em>{{ if $company.url }}</a>{{ end }}{{ with $company.location }}<span class="experience-location"> · {{ . }}</span>{{ end }}
-            </p>
+            <div class="experience-head">
+              <div class="experience-head-text">
+                <h3 class="experience-role">{{ .designation }}</h3>
+                <p class="experience-org">
+                  {{ with $company.url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}<em>{{ $company.name }}</em>{{ if $company.url }}</a>{{ end }}{{ with $company.location }}<span class="experience-location"> · {{ . }}</span>{{ end }}
+                </p>
+              </div>
+              <div class="experience-mark" aria-hidden="true">
+                {{ if $logoImage }}
+                  <img src="{{ $logoImage.RelPermalink }}" alt="" loading="lazy">
+                {{ end }}
+              </div>
+            </div>
             {{ with .responsibilities }}
               <ul class="experience-points">
                 {{ range . }}

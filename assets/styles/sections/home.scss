@@ -82,8 +82,8 @@
 
   .home-portrait {
     grid-area: portrait;
-    width: 140px;
-    height: 140px;
+    width: 240px;
+    height: 240px;
     border-radius: 8px;
     object-fit: cover;
     object-position: center;
@@ -104,8 +104,8 @@
     }
 
     .home-portrait {
-      width: 96px;
-      height: 96px;
+      width: 160px;
+      height: 160px;
     }
   }
 }

@@ -1,18 +1,34 @@
 {{/*
   Editorial education: hairline-divided rows.
-  Timeframe column (mono) | degree bold + institution italic + custom inline.
-  No logos, no tables, no card.
+  Timeframe column (mono) | small monochrome institution mark
+  | degree bold + institution italic + custom inline.
 */}}
 <div class="education-section">
   <ol class="education-list">
     {{ range .degrees }}
+      {{ $logoImage := resources.Get .institution.logo }}
       <li class="education-row">
-        <div class="education-when">{{ .timeframe }}</div>
+        <div class="education-when">
+          {{ $parts := split .timeframe "-" }}
+          <span class="education-start">{{ trim (index $parts 0) " " }}</span>
+          {{ if gt (len $parts) 1 }}
+            <span class="education-end">{{ trim (index $parts 1) " " }}</span>
+          {{ end }}
+        </div>
         <div class="education-what">
-          <h3 class="education-degree">{{ .name }}</h3>
-          <p class="education-org">
-            {{ with .institution.url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}<em>{{ .institution.name }}</em>{{ if .institution.url }}</a>{{ end }}
-          </p>
+          <div class="education-head">
+            <div class="education-head-text">
+              <h3 class="education-degree">{{ .name }}</h3>
+              <p class="education-org">
+                {{ with .institution.url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}<em>{{ .institution.name }}</em>{{ if .institution.url }}</a>{{ end }}
+              </p>
+            </div>
+            <div class="education-mark" aria-hidden="true">
+              {{ if $logoImage }}
+                <img src="{{ $logoImage.RelPermalink }}" alt="" loading="lazy">
+              {{ end }}
+            </div>
+          </div>
           {{ with .grade }}
             <p class="education-detail"><span class="education-detail-label">{{ .scale }}</span> {{ .achieved }} {{ i18n "out_of" }} {{ .outOf }}</p>
           {{ end }}

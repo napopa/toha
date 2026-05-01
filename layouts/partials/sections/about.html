@@ -1,6 +1,6 @@
 {{/*
-  Editorial About: prose summary, contact rail, and an inline Methods
-  block (two-column small-caps category | comma-separated keywords).
+  Editorial About: pure prose summary. Contact links live in the hero
+  and the navbar (the navbar group is revealed on scroll past hero).
 */}}
 <div class="about-section">
   {{ with .summary }}
@@ -8,24 +8,4 @@
       {{ . | markdownify }}
     </div>
   {{ end }}
-
-  <div class="about-rail">
-    {{ if .resume }}
-      <a class="about-resume" href="{{ .resume | relURL }}" target="_blank" rel="noopener">{{ i18n "resume" }} ↗</a>
-    {{ end }}
-    {{ with .socialLinks }}
-      <ul class="about-links">
-        {{ range . }}
-          <li>
-            {{ if eq .name "Email" }}
-              <a href="mailto:{{ .url }}" rel="{{ .rel | default "noopener" }}">{{ .name }}</a>
-            {{ else }}
-              <a href="{{ .url }}" target="_blank" rel="{{ .rel | default "noopener" }}">{{ .name }}</a>
-            {{ end }}
-          </li>
-        {{ end }}
-      </ul>
-    {{ end }}
-  </div>
-
 </div>

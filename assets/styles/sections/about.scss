@@ -1,4 +1,4 @@
-// Editorial About: prose paragraph block, contact rail in mono caps.
+// Editorial About: pure prose paragraph block.
 
 .about-section {
   .about-summary {
@@ -28,56 +28,6 @@
       &:hover,
       &:focus {
         text-decoration-color: get-light-color('accent-color');
-      }
-    }
-  }
-
-  .about-rail {
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 24px;
-    font-family: $font-mono;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: get-light-color('muted-text-color');
-  }
-
-  .about-resume {
-    color: get-light-color('accent-color');
-    text-decoration: none;
-    border-bottom: 1px solid get-light-color('accent-color');
-    padding-bottom: 2px;
-
-    &:hover,
-    &:focus {
-      color: get-light-color('hover-over-accent-color');
-      border-bottom-color: get-light-color('hover-over-accent-color');
-    }
-  }
-
-  .about-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-
-    a {
-      color: get-light-color('muted-text-color');
-      text-decoration: none;
-      border-bottom: 1px solid $rule-color;
-      padding-bottom: 2px;
-      transition: color $transition-duration $transition-type,
-        border-color $transition-duration $transition-type;
-
-      &:hover,
-      &:focus {
-        color: get-light-color('accent-color');
-        border-bottom-color: get-light-color('accent-color');
       }
     }
   }

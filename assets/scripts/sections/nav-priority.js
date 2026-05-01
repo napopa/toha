@@ -65,11 +65,21 @@ const setup = () => {
     // Reveal the overflow toggle so width measurements are honest.
     overflow.hidden = overflowMenu.children.length === 0;
 
-    const containerRight = navbar.querySelector('.container').getBoundingClientRect().right;
+    // Right boundary: container's right edge, minus the contact group's
+    // own width when it's visible. Using offsetWidth (not the live left
+    // edge) keeps the threshold honest even if the contact strip is
+    // currently overflowing — otherwise priority+ would never trigger.
+    const containerEl = navbar.querySelector('.container');
+    const containerRight = containerEl.getBoundingClientRect().right;
+    const contact = document.getElementById('navbar-contact');
+    const contactVisible = contact && window.getComputedStyle(contact).display !== 'none';
+    const rightBoundary = contactVisible
+      ? containerRight - contact.offsetWidth - 8
+      : containerRight;
     let safety = 50;
 
     // Collapse while the nav extends past the container.
-    while (safety-- > 0 && nav.getBoundingClientRect().right > containerRight + 1) {
+    while (safety-- > 0 && nav.getBoundingClientRect().right > rightBoundary + 1) {
       if (!collapseOne()) break;
       overflow.hidden = false;
     }
@@ -79,7 +89,7 @@ const setup = () => {
     while (safety-- > 0 && overflowMenu.children.length > 0) {
       // Tentatively restore and re-measure.
       if (!restoreOne()) break;
-      if (nav.getBoundingClientRect().right > containerRight + 1) {
+      if (nav.getBoundingClientRect().right > rightBoundary + 1) {
         // Overshot; collapse one back and stop.
         collapseOne();
         break;

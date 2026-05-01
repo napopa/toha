@@ -10,14 +10,52 @@
 
   .experience-row {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    column-gap: 32px;
+    grid-template-columns: 96px 1fr;
+    column-gap: 24px;
     padding: 28px 0;
     border-top: 1px solid $rule-color;
+    align-items: start;
 
     &:last-child {
       border-bottom: 1px solid $rule-color;
     }
+  }
+
+  .experience-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 10px;
+  }
+
+  .experience-head-text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .experience-mark {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-top: 2px;
+
+    img {
+      max-height: 44px;
+      max-width: 100px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: brightness(0);
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  .experience-row:hover .experience-mark img,
+  .experience-row:focus-within .experience-mark img {
+    opacity: 0.85;
   }
 
   .experience-when {
@@ -27,24 +65,24 @@
     letter-spacing: 0.06em;
     color: get-light-color('muted-text-color');
     line-height: 1.65;
-    padding-top: 4px;
     display: flex;
     flex-direction: column;
+    padding-top: 4px;
   }
+
 
   .experience-start,
   .experience-end {
     white-space: nowrap;
   }
 
+  .experience-start::after {
+    content: ' –';
+    opacity: 0.7;
+  }
+
   .experience-end {
     color: get-light-color('muted-text-color');
-
-    &::before {
-      content: '–';
-      margin-right: 6px;
-      opacity: 0.7;
-    }
   }
 
   .experience-role {
@@ -61,7 +99,7 @@
     font-family: $font-body;
     font-size: 15px;
     line-height: 1.5;
-    margin: 0 0 10px 0;
+    margin: 0;
     color: get-light-color('text-color');
 
     em {
@@ -114,12 +152,22 @@
   @include media('<=medium') {
     .experience-row {
       grid-template-columns: 1fr;
-      gap: 6px;
+      row-gap: 10px;
       padding: 22px 0;
     }
 
     .experience-when {
       padding-top: 0;
+    }
+
+    .experience-head {
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .experience-mark img {
+      max-height: 32px;
+      max-width: 76px;
     }
   }
 }

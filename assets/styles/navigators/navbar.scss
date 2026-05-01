@@ -44,14 +44,20 @@
     filter: none;
   }
 
+  // Keep section nav on a single row; priority+ JS will overflow into "More".
+  #primary-nav {
+    flex-wrap: nowrap;
+  }
+
   li {
     a {
       color: get-light-color('text-color');
       text-decoration: none !important;
       font-weight: 400;
       font-size: 14px;
-      padding: 0 12px !important;
+      padding: 0 8px !important;
       border-bottom: none !important;
+      white-space: nowrap;
       transition: color $transition-duration $transition-type;
 
       &:hover,
@@ -119,6 +125,65 @@
 
     .feather-menu {
       stroke: get-light-color('heading-color');
+    }
+  }
+
+  // Always-visible icon strip. On mobile it sits between the brand and the
+  // hamburger; on >=md it moves to the far right via flex order, after the
+  // primary nav.
+  .navbar-contact {
+    display: flex;
+    list-style: none;
+    margin: 0 0 0 auto;
+    padding: 0;
+    align-items: center;
+    gap: 16px;
+
+    li { list-style: none; }
+
+    a {
+      color: get-light-color('text-color');
+      display: inline-flex;
+      align-items: center;
+      padding: 0 !important;
+      border-bottom: none !important;
+      transition: color $transition-duration $transition-type;
+
+      &:hover,
+      &:focus {
+        color: get-light-color('accent-color') !important;
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+        stroke-width: 1.5;
+      }
+    }
+  }
+
+  // Mobile: contact strip is right-aligned, hamburger sits to its right.
+  // Tighten so brand + icons + toggler fit on a single row at small widths.
+  @include media('<medium') {
+    .container { padding: 0 20px; }
+
+    .navbar-contact {
+      margin-right: 8px;
+      gap: 12px;
+
+      a svg { width: 18px; height: 18px; }
+    }
+  }
+
+  // Desktop: brand left, primary nav center/right, contact strip far right.
+  @include media('>=medium') {
+    .navbar-brand    { order: 1; }
+    .navbar-collapse { order: 2; }
+    .navbar-contact  {
+      order: 3;
+      margin: 0 0 0 20px;
+      padding-left: 18px;
+      border-left: 1px solid $rule-color;
     }
   }
 
