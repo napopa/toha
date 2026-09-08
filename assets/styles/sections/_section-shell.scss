@@ -3,7 +3,7 @@
 // with Roman numerals, generous vertical rhythm, single column.
 
 .editorial-main {
-  background: get-light-color('bg-primary');
+  background: themed('bg-primary');
 }
 
 .section-block {
@@ -32,7 +32,7 @@
     line-height: 1.2;
     letter-spacing: -0.015em;
     margin: 0;
-    color: get-light-color('heading-color');
+    color: themed('heading-color');
     display: flex;
     align-items: baseline;
     gap: 16px;
@@ -42,7 +42,7 @@
     font-family: $font-display;
     font-style: italic;
     font-weight: 600;
-    color: get-light-color('accent-color');
+    color: themed('accent-color');
     font-size: 0.78em;
     letter-spacing: 0;
   }
@@ -55,7 +55,7 @@
     font-family: $font-body;
     font-size: 17px;
     line-height: 1.6;
-    color: get-light-color('text-color');
+    color: themed('text-color');
   }
 
   @include media('<=medium') {

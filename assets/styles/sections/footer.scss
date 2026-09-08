@@ -1,7 +1,7 @@
 // Editorial footer: one muted line with contact + last-updated.
 
 .editorial-footer {
-  background: get-light-color('bg-primary');
+  background: themed('bg-primary');
   border-top: 1px solid $rule-color;
   padding: 32px 0 48px 0;
 
@@ -19,7 +19,7 @@
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: get-light-color('muted-text-color');
+    color: themed('muted-text-color');
   }
 
   .footer-links {
@@ -31,7 +31,7 @@
     gap: 24px;
 
     a {
-      color: get-light-color('muted-text-color');
+      color: themed('muted-text-color');
       text-decoration: none;
       border-bottom: 1px solid $rule-color;
       padding-bottom: 2px;
@@ -40,13 +40,13 @@
 
       &:hover,
       &:focus {
-        color: get-light-color('accent-color');
-        border-bottom-color: get-light-color('accent-color');
+        color: themed('accent-color');
+        border-bottom-color: themed('accent-color');
       }
     }
   }
 
   .footer-meta {
-    color: get-light-color('muted-text-color');
+    color: themed('muted-text-color');
   }
 }

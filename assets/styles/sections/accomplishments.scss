@@ -25,7 +25,7 @@
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: get-light-color('accent-color');
+    color: themed('accent-color');
     line-height: 1.6;
     padding-top: 4px;
   }
@@ -36,7 +36,7 @@
     line-height: 1.3;
     font-weight: 500;
     letter-spacing: -0.005em;
-    color: get-light-color('heading-color');
+    color: themed('heading-color');
     margin: 0 0 6px 0;
 
     a {
@@ -46,8 +46,8 @@
 
       &:hover,
       &:focus {
-        color: get-light-color('accent-color');
-        border-bottom-color: get-light-color('accent-color');
+        color: themed('accent-color');
+        border-bottom-color: themed('accent-color');
       }
     }
   }
@@ -56,7 +56,7 @@
     font-family: $font-body;
     font-size: 14px;
     line-height: 1.55;
-    color: get-light-color('text-color');
+    color: themed('text-color');
     margin: 0 0 4px 0;
 
     p {
@@ -69,18 +69,18 @@
     font-family: $font-body;
     font-size: 13px;
     line-height: 1.5;
-    color: get-light-color('muted-text-color');
+    color: themed('muted-text-color');
     margin: 0;
 
     a {
-      color: get-light-color('muted-text-color');
+      color: themed('muted-text-color');
       text-decoration: none;
       border-bottom: 1px solid $rule-color;
 
       &:hover,
       &:focus {
-        color: get-light-color('accent-color');
-        border-bottom-color: get-light-color('accent-color');
+        color: themed('accent-color');
+        border-bottom-color: themed('accent-color');
       }
     }
   }

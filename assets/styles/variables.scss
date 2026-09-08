@@ -11,8 +11,11 @@ $breakpoints: (
 );
 
 // Editorial Researcher palette
-// Cream paper bg, deep ink, single ultramarine accent.
-// One theme only; the site disables dark mode.
+// Light: cream paper, deep ink, oxblood accent.
+// Dark: the same paper under lamplight. Warm near-black ground, the cream
+// becomes the ink, and the oxblood lifts so it survives on a dark field.
+// Consume these through themed() (mixins.scss), which emits CSS custom
+// properties so a single declaration serves both themes.
 
 $transition-duration: 0.3s;
 $transition-type: ease-out;
@@ -39,25 +42,31 @@ $themes: (
     'footer-color': #f4efe6,
   ),
   'dark': (
-    'accent-color': #8c2a2a,
-    'hover-over-accent-color': #6b1f1f,
-    'text-over-accent-color': #f4efe6,
-    'bg-primary': #f4efe6,
-    'bg-primary-inverse': #1a1a1a,
-    'bg-secondary': #ece6d8,
+    'accent-color': #c0584e,
+    'hover-over-accent-color': #d4726a,
+    'text-over-accent-color': #17140f,
+    'bg-primary': #17140f,
+    'bg-primary-inverse': #f4efe6,
+    'bg-secondary': #211c15,
     'bg-card': transparent,
-    'heading-color': #1a1a1a,
-    'text-color': #1a1a1a,
-    'inverse-text-color': #f4efe6,
-    'muted-text-color': #6b6b6b,
-    'inline-code-color': #8c2a2a,
-    'highlight-color': #ece6d8,
-    'footer-color': #f4efe6,
+    'heading-color': #f4efe6,
+    'text-color': #f4efe6,
+    'inverse-text-color': #17140f,
+    'muted-text-color': #a79e90,
+    'inline-code-color': #d4726a,
+    'highlight-color': #211c15,
+    'footer-color': #17140f,
   ),
 );
 
-// Hairline rule used between sections and rows.
-$rule-color: rgba(26, 26, 26, 0.12);
+// Hairline rule used between sections and rows. Theme-aware via custom
+// property; the literals per theme live in $rules below.
+$rule-color: var(--rule-color, rgba(26, 26, 26, 0.12));
+
+$rules: (
+  'light': rgba(26, 26, 26, 0.12),
+  'dark': rgba(244, 239, 230, 0.14),
+);
 
 // Typography
 $font-display: 'Fraunces', Georgia, 'Times New Roman', serif;

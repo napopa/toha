@@ -7,7 +7,7 @@
       font-family: $font-body;
       font-size: 17px;
       line-height: 1.65;
-      color: get-light-color('text-color');
+      color: themed('text-color');
 
       &:last-child {
         margin-bottom: 0;
@@ -15,19 +15,19 @@
 
       strong {
         font-weight: 600;
-        color: get-light-color('heading-color');
+        color: themed('heading-color');
       }
     }
 
     a {
-      color: get-light-color('accent-color');
+      color: themed('accent-color');
       text-decoration: underline;
       text-decoration-color: $rule-color;
       text-underline-offset: 3px;
 
       &:hover,
       &:focus {
-        text-decoration-color: get-light-color('accent-color');
+        text-decoration-color: themed('accent-color');
       }
     }
   }

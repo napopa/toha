@@ -16,6 +16,28 @@
   @return get-color('dark', $key);
 }
 
+// Theme-aware colour accessor.
+//
+// Returns a CSS custom property rather than a literal, so one declaration
+// serves both themes and a light rule can never exist without its dark
+// counterpart. emit-theme-properties() below defines the values.
+//
+// Use themed() for anything on the editorial surface. Keep get-light-color()
+// / get-dark-color() where a literal is genuinely required, notably inside
+// SCSS colour functions such as rgba(), which cannot take a var().
+@function themed($key) {
+  @return var(--c-#{$key}, #{get-color('light', $key)});
+}
+
+// Emits the custom properties for one theme. Called once per theme from
+// application.template.scss.
+@mixin emit-theme-properties($mode) {
+  @each $key, $value in map-get($themes, $mode) {
+    --c-#{$key}: #{$value};
+  }
+  --rule-color: #{map-get($rules, $mode)};
+}
+
 @mixin reset-list {
   margin: 0;
   padding: 0;

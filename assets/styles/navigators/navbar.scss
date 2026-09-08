@@ -9,9 +9,9 @@
   z-index: 99999;
   margin: 0;
   padding: 16px 0;
-  color: get-light-color('text-color');
+  color: themed('text-color');
   text-align: left;
-  background-color: get-light-color('bg-primary');
+  background-color: themed('bg-primary');
   border-bottom: 1px solid $rule-color;
   font-family: $font-body;
   transition: background-color $transition-duration $transition-type,
@@ -23,7 +23,7 @@
   }
 
   .navbar-brand {
-    color: get-light-color('heading-color');
+    color: themed('heading-color');
     text-decoration: none !important;
     font-family: $font-display;
     font-weight: 500;
@@ -51,7 +51,7 @@
 
   li {
     a {
-      color: get-light-color('text-color');
+      color: themed('text-color');
       text-decoration: none !important;
       font-weight: 400;
       font-size: 14px;
@@ -62,7 +62,7 @@
 
       &:hover,
       &:focus {
-        color: get-light-color('accent-color') !important;
+        color: themed('accent-color') !important;
         background: transparent !important;
         border-bottom: none !important;
       }
@@ -72,7 +72,7 @@
   .navbar-nav .active {
     a,
     & {
-      color: get-light-color('accent-color') !important;
+      color: themed('accent-color') !important;
       background: transparent !important;
       border-bottom: none !important;
     }
@@ -85,7 +85,7 @@
   .dropdown-menu {
     box-shadow: none;
     border: 1px solid $rule-color;
-    background-color: get-light-color('bg-primary');
+    background-color: themed('bg-primary');
   }
 
   .navbar-collapse {
@@ -93,22 +93,22 @@
 
     &.show,
     &.collapsing {
-      background-color: get-light-color('bg-primary');
+      background-color: themed('bg-primary');
       padding-left: 0;
       border-top: 1px solid $rule-color;
       margin-top: 12px;
 
       li a {
-        color: get-light-color('text-color');
+        color: themed('text-color');
         font-weight: 400;
       }
 
       .navbar-nav {
         .active {
-          color: get-light-color('accent-color');
+          color: themed('accent-color');
         }
         a:hover {
-          color: get-light-color('accent-color');
+          color: themed('accent-color');
         }
       }
     }
@@ -120,11 +120,11 @@
 
     .navbar-brand,
     li a {
-      color: get-light-color('heading-color');
+      color: themed('heading-color');
     }
 
     .feather-menu {
-      stroke: get-light-color('heading-color');
+      stroke: themed('heading-color');
     }
   }
 
@@ -142,7 +142,7 @@
     li { list-style: none; }
 
     a {
-      color: get-light-color('text-color');
+      color: themed('text-color');
       display: inline-flex;
       align-items: center;
       padding: 0 !important;
@@ -151,7 +151,7 @@
 
       &:hover,
       &:focus {
-        color: get-light-color('accent-color') !important;
+        color: themed('accent-color') !important;
       }
 
       svg {
@@ -204,5 +204,5 @@
 .feather-menu {
   width: 1.25rem;
   height: 1.25rem;
-  stroke: get-light-color('text-color');
+  stroke: themed('text-color');
 }

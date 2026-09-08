@@ -63,7 +63,7 @@
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: get-light-color('muted-text-color');
+    color: themed('muted-text-color');
     line-height: 1.65;
     display: flex;
     flex-direction: column;
@@ -81,7 +81,7 @@
   }
 
   .education-end {
-    color: get-light-color('muted-text-color');
+    color: themed('muted-text-color');
   }
 
   .education-degree {
@@ -90,7 +90,7 @@
     line-height: 1.25;
     font-weight: 500;
     letter-spacing: -0.01em;
-    color: get-light-color('heading-color');
+    color: themed('heading-color');
     margin: 0 0 4px 0;
   }
 
@@ -99,22 +99,22 @@
     font-size: 15px;
     line-height: 1.5;
     margin: 0;
-    color: get-light-color('text-color');
+    color: themed('text-color');
 
     em {
       font-style: italic;
     }
 
     a {
-      color: get-light-color('text-color');
+      color: themed('text-color');
       text-decoration: none;
       border-bottom: 1px solid $rule-color;
       padding-bottom: 1px;
 
       &:hover,
       &:focus {
-        color: get-light-color('accent-color');
-        border-bottom-color: get-light-color('accent-color');
+        color: themed('accent-color');
+        border-bottom-color: themed('accent-color');
       }
     }
   }
@@ -123,7 +123,7 @@
     font-family: $font-body;
     font-size: 14px;
     line-height: 1.55;
-    color: get-light-color('text-color');
+    color: themed('text-color');
     margin: 0 0 4px 0;
 
     .education-detail-label {
@@ -131,7 +131,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: get-light-color('muted-text-color');
+      color: themed('muted-text-color');
       margin-right: 6px;
     }
 

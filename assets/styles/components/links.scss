@@ -2,7 +2,7 @@
 // In running prose links can carry a permanent thin underline; nav and section
 // links override below.
 a {
-  color: get-light-color('text-color');
+  color: themed('text-color');
   text-decoration-color: $rule-color;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -15,36 +15,36 @@ a {
 
   &:hover,
   &:focus {
-    color: get-light-color('accent-color');
+    color: themed('accent-color');
     text-decoration: underline;
-    text-decoration-color: get-light-color('accent-color');
+    text-decoration-color: themed('accent-color');
   }
 }
 
 .list-link,
 .taxonomy-term {
   text-decoration: none !important;
-  color: get-light-color('text-color');
+  color: themed('text-color');
   transition: color $transition-duration $transition-type;
 
   &.active {
     display: inline;
-    color: get-light-color('accent-color');
+    color: themed('accent-color');
   }
 
   &:hover {
-    color: get-light-color('accent-color');
+    color: themed('accent-color');
   }
 }
 
 a.header-anchor {
   text-decoration: none;
-  color: get-light-color('heading-color');
+  color: themed('heading-color');
 
   i,
   svg {
     font-size: 10pt;
-    color: get-light-color('text-color');
+    color: themed('text-color');
     display: none;
     margin-left: 0.5rem;
   }
@@ -57,7 +57,7 @@ a.header-anchor {
   }
 
   code {
-    color: get-light-color('inline-code-color');
+    color: themed('inline-code-color');
   }
 }
 
