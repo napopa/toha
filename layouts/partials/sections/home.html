@@ -31,7 +31,7 @@
       {{ end }}
       <div class="home-meta">
         {{ with $author.contactInfo.email }}
-          <a href="mailto:{{ . }}">{{ . }}</a>
+          <a href="mailto:{{ . }}">Email</a>
         {{ end }}
         {{ with $author.contactInfo.linkedin }}
           <a href="https://www.linkedin.com/in/{{ . }}" rel="me noopener" target="_blank">LinkedIn</a>
@@ -43,7 +43,7 @@
           <a href="https://github.com/{{ . }}" rel="me noopener" target="_blank">GitHub</a>
         {{ end }}
         {{ with $author.contactInfo.cv }}
-          <a href="{{ . | relURL }}">CV</a>
+          <a href="{{ . | relURL }}" target="_blank" rel="noopener">CV</a>
         {{ end }}
       </div>
     </div>
