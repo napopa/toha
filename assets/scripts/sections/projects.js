@@ -21,5 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 })
 
-// dynamically insert github buttons script.
-insertScript('github-buttons', 'https://buttons.github.io/buttons.js')
+// Dynamically insert the GitHub buttons script, but only when the page
+// actually renders a star button.
+//
+// This used to run unconditionally at module scope, so every page fetched
+// buttons.github.io even on sites with no projects section at all: a
+// third-party request, and a visitor-facing privacy leak, for markup that was
+// never on the page. Guarding it also keeps the default Content-Security-Policy
+// tight, since no external script origin needs allowing when no button exists.
+if (document.querySelector('.github-button') !== null) {
+  insertScript('github-buttons', 'https://buttons.github.io/buttons.js')
+}
