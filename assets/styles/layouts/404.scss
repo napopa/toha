@@ -1,54 +1,74 @@
+// Editorial 404.
+//
+// The page reuses .section-block / .section-inner from the section shell, so
+// the numeral, heading, rule and body type all come from the shared editorial
+// rules and are theme-aware already. Only the page-specific spacing and the
+// back link live here.
+//
+// The previous version positioned the message absolutely over a raster
+// illustration; that markup and its breakpoint gymnastics are gone.
+
 body.kind-404 {
   #sidebar-toggler {
     display: none;
   }
 
-  .container {
-    text-align: center;
-  }
+  .section-404 {
+    border-top: 0;
+    padding: 160px 0 200px;
+    // The page is short, so without this the footer floats mid-viewport with
+    // dead space beneath it. Only the footer is subtracted: the navbar is
+    // fixed and takes no space in flow. svh rather than vh so mobile browser
+    // chrome does not overshoot.
+    min-height: calc(100svh - 99px);
+    box-sizing: border-box;
 
-  .notFound {
-    position: relative;
-    display: inline-block;
-    padding-top: 5rem;
-    text-align: center;
-    padding-bottom: 8rem;
-
-    img {
-      height: 500px;
+    // Hairline under the heading. The section shell rules between sections
+    // instead, but this page has only one, so the rule belongs here to keep
+    // the same ruled-header device.
+    .section-header {
+      padding-bottom: 28px;
+      border-bottom: 1px solid $rule-color;
+      margin-bottom: 40px;
     }
 
-    h1 {
-      font-style: italic;
+    .section-body p {
+      margin: 0;
+      max-width: 46ch;
     }
 
-    // The message is painted on the wall in the illustration, so it has to be
-    // positioned against the illustration rather than against the page.
-    .message {
-      position: absolute;
-      top: 26%;
-      left: 25%;
-      width: 40%;
-    }
-  }
+    .section-404-back {
+      margin-top: 40px !important;
 
-  // No room to fit the message on the wall, so put it below the illustration.
-  @include media('<=medium') {
-    .notFound {
-      display: block;
+      a {
+        font-family: $font-mono;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: themed('muted-text-color');
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+        text-decoration-color: $rule-color;
+        transition: color 0.2s ease;
 
-      img {
-        height: auto;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
+        &:hover,
+        &:focus {
+          color: themed('accent-color');
+          text-decoration-color: themed('accent-color');
+        }
       }
+    }
+  }
 
-      .message {
-        position: static;
-        width: auto;
-        max-width: 20rem;
-        margin: 2rem auto 0;
+  @include media('<=medium') {
+    .section-404 {
+      padding: 96px 0 128px;
+      min-height: calc(100svh - 99px);
+
+      .section-header {
+        padding-bottom: 20px;
+        margin-bottom: 28px;
       }
     }
   }

@@ -2,24 +2,29 @@
     {{ partial "navigators/navbar.html" . }}
 {{ end }}
 
+{{/*
+  Editorial 404. The site numbers its sections in Roman numerals, so the error
+  page is numbered too: 404 is CDIV. Reuses the section shell, which means the
+  page inherits the theme tokens and needs no colours of its own; it is correct
+  in light and dark by construction.
+*/}}
 {{ define "content" }}
-{{/* not found image */}}
-{{ $notFoundImage := "/images/404.png" }}
-
-{{/* resize the image. don't resize svg because it is not supported */}}
-{{ $notFoundImage := resources.Get $notFoundImage}}
-{{ if and $notFoundImage (ne $notFoundImage.MediaType.SubType "svg") }}
-  {{ $notFoundImage = $notFoundImage.Resize "1500x" }}
-{{ end }}
-{{ $notFoundImage = $notFoundImage.RelPermalink}}
-
-<div class="container">
-    <div class="notFound">
-        <img src="{{ $notFoundImage }}" alt="Page Not Found">
-        <div class="message">
-            <h1>404</h1>
-            <h4>{{ i18n "err_404" }}</h4>
-        </div>
+<main class="editorial-main">
+  <section class="section-block section-404">
+    <div class="section-inner">
+      <header class="section-header">
+        <h1 class="section-heading">
+          <span class="section-numeral">CDIV.</span>
+          <span class="section-title">{{ i18n "err_404_title" | default "Not Found" }}</span>
+        </h1>
+      </header>
+      <div class="section-body">
+        <p>{{ i18n "err_404" }}</p>
+        <p class="section-404-back">
+          <a href="{{ site.BaseURL | relLangURL }}">{{ i18n "err_404_back" | default "Return to contents" }}</a>
+        </p>
+      </div>
     </div>
-</div>
+  </section>
+</main>
 {{ end }}

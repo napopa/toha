@@ -111,7 +111,13 @@ other = "Star"
 other = "Details"
 
 [err_404]
-other = "The page you are looking for is not there yet."
+other = "This section does not exist. It may have been moved, or it may never have been written."
+
+[err_404_title]
+other = "Not Found"
+
+[err_404_back]
+other = "Return to contents"
 
 [more]
 other = "More"
